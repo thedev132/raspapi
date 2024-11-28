@@ -2,7 +2,8 @@
 import MainLayout from "@/layouts/MainLayout.astro";
 import Section from "@/components/Section.astro";
 import ReadableSection from "@/components/ReadableSection.astro";
-import { BookOpen, Code } from "lucide-astro";
+import sensorhat from "../sensorhat.png";
+import { Image } from "astro:assets";
 
 const projectInfo = {
 	command: "GET /mission-control",
@@ -37,8 +38,19 @@ const submitProject = {
 	output: {
 		submission_link: `<a href='${submissionUrl}' class='drop-shadow-glow hover:underline'>${submissionUrl}</a>`,
 		deadline: "January 31, 2025",
+		bonus: "Work on your project for at least 3 hours on High Seas to earn extra rewards!",
 	},
 };
+
+const prizePool = {
+	command: "GET /prizes",
+	title: "Prize Pool",
+	output: {
+		top_3: "Raspberry Pi Sensor HAT",
+		about: "The Sensor HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!",
+		image: `<img src='${sensorhat.src}' alt='Raspberry Pi Sensor HAT' class='w-36 inline-block' />`,
+	}
+}
 ---
 
 <script is:inline>
@@ -84,6 +96,8 @@ const submitProject = {
 			command={submitProject.command}
 			output={submitProject.output}
 		/>
+
+		<Section command={prizePool.command} output={prizePool.output} />
 	</div>
 
 	<div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
@@ -131,6 +145,17 @@ const submitProject = {
 					created by Adam Xu
 				</li>
 			</ul>
+		</ReadableSection>
+
+		<ReadableSection title="Prize Pool">
+			<div class="flex gap-8 items-center">
+				<div>
+					<p class="text-xl text-red-500">Top 3 submissions will receive a Raspberry Pi Sensor HAT!</p>
+					
+					<p>The Sensor HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!</p>
+				</div>
+				<Image src={sensorhat} alt="Raspberry Pi Sensor HAT" class="w-1/3 mx-auto" />
+			</div>
 		</ReadableSection>
 	</div>
 
