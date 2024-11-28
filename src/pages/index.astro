@@ -44,10 +44,10 @@ const submitProject = {
 <script is:inline>
 	// Set initial view mode based on localStorage
 	const savedViewMode = localStorage.getItem("viewMode");
-	if (savedViewMode === "programmer") {
-		document.documentElement.classList.add("dark");
-	} else {
+	if (savedViewMode === "readable") {
 		document.documentElement.classList.remove("dark");
+	} else {
+		document.documentElement.classList.add("dark");
 	}
 </script>
 
