@@ -10,7 +10,7 @@ const res = `
   "documentation": "Required",
   "example": "https://raspapi-example.adamthegreat.hackclub.app/"
 }
-`
+`.trim()
 
 export const GET: APIRoute = () => {
     return new Response(res);

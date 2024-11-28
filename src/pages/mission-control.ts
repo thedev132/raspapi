@@ -7,7 +7,7 @@ const res = `
   "status": "ACTIVE",
   "get_free_stuff": true
 }
-`
+`.trim()
 
 export const GET: APIRoute = () => {
     return new Response(res);
