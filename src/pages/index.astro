@@ -1,16 +1,154 @@
 ---
+import MainLayout from "@/layouts/MainLayout.astro";
+import Section from "@/components/Section.astro";
+import ReadableSection from "@/components/ReadableSection.astro";
+import { BookOpen, Code } from "lucide-astro";
 
+const projectInfo = {
+	command: "GET /mission-control",
+	title: "What is it?",
+	output: {
+		project: "RaspAPI YSWS",
+		description: "Submit an API, get a Raspberry Pi!",
+		status: "ACTIVE",
+		get_free_stuff: true,
+	},
+};
+
+const exampleUrl = "https://raspapi-example.adamthegreat.hackclub.app/";
+const apiRequirements = {
+	command: "GET /requirements",
+	title: "API Requirements",
+	output: {
+		minimum_endpoints: {
+			post_requests: 1,
+			get_requests: 3,
+		},
+		languages_and_frameworks: "*",
+		documentation: "Required",
+		example: `<a href='${exampleUrl}' class='drop-shadow-glow hover:underline'>${exampleUrl}</a>`,
+	},
+};
+
+const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
+const submitProject = {
+	command: "POST /submit",
+	title: "Submit Your API",
+	output: {
+		submission_link: `<a href='${submissionUrl}' class='drop-shadow-glow hover:underline'>${submissionUrl}</a>`,
+		deadline: "January 31, 2025",
+	},
+};
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<script is:inline>
+	// Set initial view mode based on localStorage
+	const savedViewMode = localStorage.getItem("viewMode");
+	if (savedViewMode === "programmer") {
+		document.documentElement.classList.add("dark");
+	} else {
+		document.documentElement.classList.remove("dark");
+	}
+</script>
+
+<MainLayout title="RaspAPI YSWS - Home">
+	<div class="flex flex-col items-center">
+		<label class="relative inline-flex items-center cursor-pointer">
+			<span class="mr-3 text-sm font-medium">Reader</span>
+			<div class="relative">
+				<input type="checkbox" class="sr-only peer" />
+				<div
+					class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:bg-gray-600 peer-checked:bg-green-600 peer-checked:after:translate-x-5 peer-checked:after:bg-white"
+				>
+				</div>
+			</div>
+			<span class="ml-3 text-sm font-medium"> Programmer </span>
+		</label>
+	</div>
+
+	<div class="max-w-4xl mx-auto" slot="programmer">
+		<h1 class="text-4xl font-bold mb-8 text-green-500">RaspAPI YSWS</h1>
+
+		<p class="text-green-300 mb-8">
+			// You Ship, We Ship: Ship us an API, get a Raspberry Pi!
+		</p>
+
+		<Section command={projectInfo.command} output={projectInfo.output} />
+
+		<Section
+			command={apiRequirements.command}
+			output={apiRequirements.output}
+		/>
+
+		<Section
+			command={submitProject.command}
+			output={submitProject.output}
+		/>
+	</div>
+
+	<div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
+		<h1 class="text-4xl font-bold mb-4 text-center">RaspAPI YSWS</h1>
+
+		<p class="mb-4 text-center text-xl text-red-500">
+			You Ship, We Ship: Ship us an API, get a Raspberry Pi!
+		</p>
+
+		<a
+			href={submissionUrl}
+			class="mb-8 bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors transform hover:scale-105 duration-200 mx-auto"
+			>Get your Raspberry Pi</a
+		>
+
+		<ReadableSection title="What is it?">
+			<ul class="list-disc list-inside leading-loose">
+				<li>
+					Create an original API using any programming language or
+					framework
+				</li>
+				<li>
+					Submit your project to High Seas with minimum 3 hours for
+					extra rewards (and for proof)
+				</li>
+				<li>Implement at least three GET and one POST endpoint</li>
+				<li>Include proper detailed documentation for your API</li>
+				<li>Host your API on a publicly accessible server</li>
+				<li>Submit your API before the deadline January 1st</li>
+			</ul>
+		</ReadableSection>
+
+		<ReadableSection title="API Requirements">
+			<ul>
+				<li>Minimum of 3 GET requests and 1 POST request</li>
+				<li>Any programming language or framework is allowed</li>
+				<li>Documentation is required</li>
+			</ul>
+
+			<p>Examples:</p>
+
+			<ul>
+				<li>
+					<a href={exampleUrl} class="hover:underline">Joke API</a>
+					created by Adam Xu
+				</li>
+			</ul>
+		</ReadableSection>
+	</div>
+
+	<script>
+		const checkbox = document.querySelector(
+			"input[type=checkbox]",
+		)! as HTMLInputElement;
+
+		checkbox.checked = document.documentElement.classList.contains("dark");
+
+		checkbox.addEventListener("change", (e) => {
+			if ((e.target as HTMLInputElement).checked) {
+				document.documentElement.classList.add("dark");
+				localStorage.setItem("viewMode", "programmer");
+			} else {
+				document.documentElement.classList.remove("dark");
+				localStorage.setItem("viewMode", "readable");
+			}
+		});
+	</script>
+</MainLayout>
