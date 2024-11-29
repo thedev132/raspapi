@@ -1,20 +1,12 @@
----
-
-const { 
-    command, 
-    output 
-} = Astro.props;
----
-
 <div class="bg-gray-900 text-green-400 p-4 rounded-lg mb-4 border-2 border-green-800">
     <div class="flex items-center space-x-2">
         <span class="text-green-500">➜</span>
         <span class="text-sm uppercase tracking-wider">Curl if you dare...</span>
     </div>
     <div class="bg-black p-3 rounded mt-2 flex flex-row items-center justify-center">
-        <pre set:html={"curl "} class="mt-2 text-orange-300 opacity-80 text-wrap overflow-x-auto text-center"></pre>
-        <pre set:html={"https://"} class="mt-2 text-red-300 opacity-80 text-wrap overflow-x-auto text-center"></pre>
-        <pre set:html={"raspapi.byteatatime.dev"} class="mt-2 text-green-300 opacity-80 text-wrap overflow-x-auto text-center"></pre>
-        <pre set:html={"/start"} class="mt-2 text-yellow-300 opacity-80 text-wrap overflow-x-auto text-center"></pre>
+        <pre class="mt-2 text-orange-300 opacity-80 text-wrap overflow-x-auto text-center">curl </pre>
+        <pre class="mt-2 text-red-300 opacity-80 text-wrap overflow-x-auto text-center">https://</pre>
+        <pre class="mt-2 text-green-300 opacity-80 text-wrap overflow-x-auto text-center">raspapi.byteatatime.dev</pre>
+        <pre class="mt-2 text-yellow-300 opacity-80 text-wrap overflow-x-auto text-center">/start</pre>
     </div>
 </div>

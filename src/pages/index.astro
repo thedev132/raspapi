@@ -5,54 +5,8 @@ import ReadableSection from "@/components/ReadableSection.astro";
 import sensorhat from "../sensorhat.png";
 import { Image } from "astro:assets";
 
-const projectInfo = {
-	command: "GET /mission-control",
-	title: "What is it?",
-	output: {
-		project: "RaspAPI YSWS",
-		description: "Submit an API, get a mini server to host it on!",
-		status: "ACTIVE",
-		get_free_stuff: true,
-	},
-};
-
 const exampleUrl = "https://raspapi-example.adamthegreat.hackclub.app/";
-const apiRequirements = {
-	command: "GET /requirements",
-	title: "API Requirements",
-	output: {
-		minimum_endpoints: {
-			post_requests: 1,
-			get_requests: 3,
-		},
-		languages_and_frameworks: "*",
-		documentation: "Required",
-		example: `<a href='${exampleUrl}' class='drop-shadow-glow hover:underline'>${exampleUrl}</a>`,
-	},
-};
-
 const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
-const submitProject = {
-	command: "POST /submit",
-	title: "Submit Your API",
-	output: {
-		submission_link: `<a href='${submissionUrl}' class='drop-shadow-glow hover:underline'>${submissionUrl}</a>`,
-		deadline: "January 31, 2025",
-		bonus: "Work on your project for at least 3 hours on High Seas to earn extra rewards!",
-	},
-};
-
-const prizePool = {
-	command: "GET /prizes",
-	title: "Prize Pool",
-	output: {
-		top_3: "Raspberry Pi Sensor HAT",
-		about: "The Sensor HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!",
-		image: `<img src='${sensorhat.src}' alt='Raspberry Pi Sensor HAT' class='w-36 inline-block' />`,
-	}
-}
-
-
 ---
 
 <script is:inline>
