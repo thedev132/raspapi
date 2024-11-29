@@ -16,7 +16,7 @@ ${cyan}${bold}🎉 Congratulations! 🎉${reset}
 
 ${green}You've reached the end of the RaspAPI challenge.${reset}
 
-${yellow}Here’s your secret code: ${blue}${bold}RASPBERRY-PI-2024/2025${reset}
+${yellow}Here’s your secret code: ${blue}${bold}${import.meta.env.SECRET_CODE}${reset}
 
 ${magenta}Great job following the clues and learning about RaspAPI along the way!${reset}
 
