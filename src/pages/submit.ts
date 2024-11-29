@@ -27,7 +27,8 @@ const res = `${cyan}{${reset}
     "github_repo": "https://github.com/hackclub/project-x"
     "api_link"": "hackclub.com/api/project-x"
     "stars": 5
-    "how_did_you_hear_about_us": "Google"
+    "how_did_you_hear_about_us": "Google",
+    "secret_code": "It's secret for a reason..."
   }${reset},${reset}
   ${red}"deadline"${reset}: ${green}"January 31, 2025"${reset},${reset}
   ${red}"hint"${reset}: ${green}"navigate to ${red}/[TOTAL_NUMBER_OF_ENDPOINTS_REQUIRED]${reset}${green} to finally uncover the secret!"${reset}
@@ -50,6 +51,7 @@ const submitSchema = z.object({
     slack_id: z.string().regex(/^U[A-Z0-9]{8}$/),
     project_name: z.string().min(1).max(100),
     github_repo: z.string().url().startsWith('https://github.com/'),
+    secret_code: z.string().optional(),
     api_link: z.string().url(),
     stars: z.number().int().min(1).max(5),
     how_did_you_hear_about_us: z.string().min(1).max(500)
@@ -136,6 +138,10 @@ export const POST: APIRoute = async ({ request }) => {
                         {
                             "id": "jVjr",
                             "value": data.how_did_you_hear_about_us
+                        },
+                        {
+                            "id": "6b4d",
+                            "value": data.secret_code
                         }
                     ],
                     "submissionTime": new Date().toISOString(),
