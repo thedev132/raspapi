@@ -3,6 +3,7 @@ import MainLayout from "@/layouts/MainLayout.astro";
 import Section from "@/components/Section.astro";
 import ReadableSection from "@/components/ReadableSection.astro";
 import sensorhat from "../sensorhat.png";
+import logo from "../logo.png";
 import { Image } from "astro:assets";
 
 const exampleUrl = "https://raspapi-example.adamthegreat.hackclub.app/";
@@ -39,7 +40,10 @@ const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
 	</div>
 
 	<div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
-		<h1 class="text-4xl font-bold mb-4 text-center">RaspAPI</h1>
+		<h1 class="text-4xl font-bold mb-4 text-center flex items-center justify-center">
+			<Image src={logo} alt="Logo" class="w-24" />
+			RaspAPI
+		</h1>
 
 		<p class="mb-4 text-center text-xl text-red-500">
 			You Ship, We Ship: Ship us an API, get a mini server to host it on!
@@ -64,7 +68,7 @@ const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
 				<li>Implement at least three GET and one POST endpoint</li>
 				<li>Include proper detailed documentation for your API</li>
 				<li>Host your API on a publicly accessible server</li>
-				<li>Submit your API before the deadline January 1st</li>
+				<li>Submit your API before the deadline January 31st</li>
 			</ul>
 		</ReadableSection>
 
