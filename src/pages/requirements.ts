@@ -10,12 +10,12 @@ const reset = "\x1b[0m";
 // Define the JSON content with color codes embedded
 const res = `${green}{${reset}
   ${blue}"minimum_endpoints"${reset}: {${reset}
-    ${green}"post_requests"${reset}: ${yellow}1${reset},${reset}
+    ${green}"post_endpoints"${reset}: ${yellow}1${reset},${reset}
     ${green}"get_requests"${reset}: ${yellow}3${reset}${reset}
   ${green}}${reset},${reset}
   ${blue}"languages_and_frameworks"${reset}: ${yellow}"All"${reset},${reset}
   ${blue}"documentation"${reset}: ${yellow}"Required"${reset},${reset}
-  ${blue}"example"${reset}: ${yellow}"https://raspapi-example.adamthegreat.hackclub.app/"${reset},${reset}
+  ${blue}"example"${reset}: ${yellow}["https://raspapi-example.adamthegreat.hackclub.app/", "https://cdn.hackclub.com/"]${reset},${reset}
   ${blue}"hint"${reset}: ${yellow}"Check out /prizes to learn more about our prize pool—and uncover another clue!"${reset}
 ${green}}\n`;
 
