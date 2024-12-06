@@ -5,8 +5,9 @@ import ReadableSection from "@/components/ReadableSection.astro";
 import sensorhat from "../sensorhat.png";
 import logo from "../logo.png";
 import { Image } from "astro:assets";
+import Title from "@/components/Title.astro";
 
-const exampleUrl = "https://raspapi-example.adamthegreat.hackclub.app/";
+const exampleUrl = ["https://raspapi-example.adamthegreat.hackclub.app/", "https://example.com"];
 const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
 ---
 
@@ -42,61 +43,59 @@ const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
 	<div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
 		<h1 class="text-4xl font-bold mb-4 text-center flex items-center justify-center">
 			<Image src={logo} alt="Logo" class="w-24" />
-			RaspAPI
+			<Title />
 		</h1>
 
 		<p class="mb-4 text-center text-xl text-red-500">
-			You Ship, We Ship: Ship us an API, get a mini server to host it on!
+			Create an amazing API, get a mini server to host it on!
 		</p>
 
 		<a
 			href={submissionUrl}
-			class="mb-8 bg-red-600 text-white px-8 py-3 rounded-full text-lg font-semibold hover:bg-red-700 transition-colors transform hover:scale-105 duration-200 mx-auto"
+			class="mb-8 bg-black border border-green-400 text-slate-300 px-8 py-3 rounded shadow-lg text-lg font-semibold transition transform hover:scale-105 duration-200 mx-auto"
+			style="box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4);"
+			onmouseover="this.style.boxShadow='0 0 25px 5px rgba(34, 197, 94, 0.8), 0 0 50px 8px rgba(34, 197, 94, 0.6)';"
+			onmouseout="this.style.boxShadow='0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4)';"
 			>Get your Raspberry Pi</a
 		>
 
-		<ReadableSection title="What is it?">
+		<ReadableSection title="About the YSWS">
+					Create an original API using any programming language or framework that you prefer and get a Raspberry Pi Zero 2 W to host it on! The API can be anything you want. The possibilities are endless!
+		</ReadableSection>
+
+		<ReadableSection title="Requirements">
 			<ul>
-				<li>
-					Create an original API using any programming language or
-					framework
-				</li>
+				<li>Minimum of 3 GET requests and 1 POST request</li>
 				<li>
 					Submit your project to High Seas with minimum 3 hours for
 					extra rewards (and for proof)
 				</li>
-				<li>Implement at least three GET and one POST endpoint</li>
 				<li>Include proper detailed documentation for your API</li>
 				<li>Host your API on a publicly accessible server</li>
 				<li>Submit your API before the deadline January 31st</li>
-			</ul>
-		</ReadableSection>
-
-		<ReadableSection title="API Requirements">
-			<ul>
-				<li>Minimum of 3 GET requests and 1 POST request</li>
-				<li>Any programming language or framework is allowed</li>
-				<li>Documentation is required</li>
 			</ul>
 
 			<p>Examples:</p>
 
 			<ul>
 				<li>
-					<a href={exampleUrl} class="hover:underline">Joke API</a>
+					<a href={exampleUrl[0]} class="hover:underline text-green-600">Joke API</a>
 					created by Adam Xu
 				</li>
+				<li>
+					<a href={exampleUrl[1]} class="hover:underline text-green-600">Hackathon Point System</a>
+					created by Ruiyu Liu
 			</ul>
 		</ReadableSection>
 
 		<ReadableSection title="Prize Pool">
 			<div class="flex gap-8 items-center">
 				<div>
-					<p class="text-xl text-red-500">Top 3 submissions will receive a Raspberry Pi Sense HAT!</p>
+					<p class="text-xl text-red-500 mt-0">Top 3 submissions will receive a Raspberry Pi Sense HAT!</p>
 					
-					<p>The Sense HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!</p>
+					<p class="mb-0">The Sense HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!</p>
 				</div>
-				<Image src={sensorhat} alt="Raspberry Pi Sensor HAT" class="w-1/3 mx-auto" />
+				<Image src={sensorhat} alt="Raspberry Pi Sensor HAT" class="w-1/3 mx-auto my-0" />
 			</div>
 		</ReadableSection>
 	</div>

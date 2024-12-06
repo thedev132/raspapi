@@ -1,0 +1,124 @@
+<span class="title font-mono text-green-500"></span>
+
+<script>
+    const title = document.querySelector(".title")! as HTMLSpanElement;
+    const characters = "!<>-_\\/[]{}—=+*^?#_";
+
+    title.innerHTML = Array.from(
+        { length: 15 },
+        () => {
+            const char = characters[Math.floor(Math.random() * characters.length)];
+            return `<span class="text-green-700">${char}</span>`;
+        }
+    ).join("");
+
+    class TextScramble {
+        private el: HTMLElement;
+        private queue: Array<{
+            from: string;
+            to: string;
+            start: number;
+            end: number;
+            char?: string;
+        }> = [];
+        private frame: number = 0;
+        private frameRequest?: number;
+        private resolve?: () => void;
+
+        constructor(el: HTMLElement) {
+            this.el = el;
+            this.update = this.update.bind(this);
+        }
+
+        setText(newText: string): Promise<void> {
+            const oldText = this.el.innerText;
+            const length = Math.max(oldText.length, newText.length);
+
+            const promise = new Promise<void>((resolve) => {
+                this.resolve = resolve;
+            });
+
+            this.queue = [];
+            for (let i = 0; i < length; i++) {
+                const from = oldText[i] || "";
+                const to = newText[i] || "";
+                const start = Math.floor(Math.random() * 40);
+                const end = start + Math.floor(Math.random() * 40);
+                this.queue.push({ from, to, start, end });
+            }
+
+            if (this.frameRequest) cancelAnimationFrame(this.frameRequest);
+            this.frame = 0;
+            this.update();
+
+            return promise;
+        }
+
+        private update = (): void => {
+            let output = "";
+            let complete = 0;
+
+            for (let i = 0, n = this.queue.length; i < n; i++) {
+                const { from, to, start, end, char } = this.queue[i];
+
+                if (this.frame >= end) {
+                    complete++;
+                    if (characters.includes(to)) {
+                        output += `<span class="text-green-700">${to}</span>`;
+                    } else {
+                        output += to;
+                    }
+                } else if (this.frame >= start) {
+                    const newChar =
+                        !char || Math.random() < 0.28
+                            ? this.randomChar()
+                            : char;
+
+                    this.queue[i].char = newChar;
+                    output += `<span class="text-green-700">${newChar}</span>`;
+                } else {
+                    if (characters.includes(from)) {
+                        output += `<span class="text-green-700">${from}</span>`;
+                    } else {
+                        output += from;
+                    }
+                }
+            }
+  
+            this.el.innerHTML = output;
+
+            if (complete === this.queue.length) {
+                this.resolve?.();
+            } else {
+                this.frameRequest = requestAnimationFrame(this.update);
+                this.frame++;
+            }
+        };
+
+        private randomChar(): string {
+            return characters[Math.floor(Math.random() * characters.length)];
+        }
+    }
+
+    const fx = new TextScramble(title)
+    fx.setText("RaspAPI");
+
+    let scrambleInterval: number;
+
+    title.addEventListener("mouseenter", () => {
+        clearInterval(scrambleInterval);
+
+        scrambleInterval = setInterval(() => {
+            fx.setText(Array.from(
+                { length: 15 },
+                () => characters[Math.floor(Math.random() * characters.length)]
+            ).join("")
+            )
+        }, 400);
+    });
+
+    title.addEventListener("mouseleave", () => {
+        clearInterval(scrambleInterval);
+        fx.setText("RaspAPI");
+    });
+</script>

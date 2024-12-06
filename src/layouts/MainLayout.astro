@@ -16,7 +16,7 @@ const { title = 'RaspAPI YSWS' } = Astro.props;
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-slate-900 dark:bg-black text-slate-300 dark:text-green-400 dark:font-mono min-h-screen py-8">
+<body class="bg-black dark:bg-black text-slate-300 dark:text-green-400 dark:font-mono min-h-screen py-8">
     <slot />
 
     <main class="container mx-auto px-4 py-8">
@@ -28,7 +28,58 @@ const { title = 'RaspAPI YSWS' } = Astro.props;
         </div>
     </main>
     <footer class="text-center text-green-600 text-xs py-4">
-        <span class="hidden dark:inline-block">//</span> RaspAPI YSWS - Submit an API, get a Raspberry Pi!
+        <span class="hidden dark:inline-block">//</span> Made with <span class="text-red-600">❤</span> by <a href="https://hackclub.slack.com/team/U04FRCW7E4A" class="text-green-500">@ByteAtATime</a> and <a href="https://hackclub.slack.com/team/U05UQ2RTJ6T" class="text-green-500">@Mohamad</a>
     </footer>
+
+    <canvas id="bg" class="fixed -z-10 top-0 bottom-0 left-0 right-0 font-mono text-xl flex flex-wrap text-slate-800"></div>
 </body>
 </html>
+
+<script>
+    const bg = document.getElementById("bg")! as HTMLCanvasElement;
+    const ctx = bg.getContext("2d")!;
+
+    bg.width = window.innerWidth;
+    bg.height = window.innerHeight;
+
+    const fontSize = 10;
+
+    let columns = bg.width / 10;
+    let drops: number[] = Array.from({ length: columns }, () => Math.floor(Math.random() * bg.height / fontSize));
+
+    window.addEventListener("resize", () => {
+        bg.width = window.innerWidth;
+        bg.height = window.innerHeight;
+
+        columns = bg.width / 10;
+        drops = Array.from({ length: columns }, (_, i) => i < drops.length ? drops[i] : Math.floor(Math.random() * bg.height / fontSize));
+    });
+
+    const characters = "!<>-_\\/[]{}—=+*^?#_";
+
+    let frame = 0;
+    function draw() {
+        ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+        ctx.fillRect(0, 0, bg.width, bg.height);
+
+        ctx.fillStyle = "#0A0";
+        ctx.font = `${fontSize}px JetBrains Mono`;
+
+        drops.forEach((drop, i) => {
+            const text = characters[Math.floor(Math.random() * characters.length)];
+            ctx.fillText(text, i * fontSize, drop * fontSize);
+
+            if (drop * fontSize > bg.height && Math.random() > 0.975) {
+                drops[i] = 0;
+            }
+
+            if (frame % 2 === 0) drops[i]++;
+        });
+
+        requestAnimationFrame(draw);
+
+        frame++;
+    }
+
+    requestAnimationFrame(draw);
+</script>
