@@ -48,7 +48,7 @@ const submitSchema = z.object({
     email: z.string().email(),
     date_of_birth: z.string(),
     address: z.string().min(1).max(500),
-    slack_id: z.string().regex(/^U[A-Z0-9]{8}$/),
+    slack_id: z.string().regex(/^U[A-Z0-9]+$/),
     project_name: z.string().min(1).max(100),
     github_repo: z.string().url().startsWith('https://github.com/'),
     secret_code: z.string().optional(),
