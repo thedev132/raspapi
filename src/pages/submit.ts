@@ -17,17 +17,18 @@ const res = `${cyan}{${reset}
   ${red}"submit_via_api"${reset}: ${cyan}
   ${green}Example (submit to /submit):${reset}
   ${cyan}{
-    "first_name": "John"
-    "last_name": "Doe"
-    "email": "john_doe@hackclub.com"
-    "date_of_birth": "10/26/1990"
-    "address": "123 Main St, New York, NY 10001"
-    "slack_id": "U123456"
-    "project_name": "Project X"
-    "github_repo": "https://github.com/hackclub/project-x"
-    "api_link"": "hackclub.com/api/project-x"
-    "stars": 5
+    "full_name": "John Doe",
+    "email": "john_doe@hackclub.com",
+    "date_of_birth": "10/26/1990",
+    "address": "123 Main St, New York, NY 10001",
+    "slack_id": "U123456",
+    "project_name": "Project X",
+    "github_repo": "https://github.com/hackclub/project-x",
+    "api_link": "https://hackclub.com/api/project-x",
+    "stars": 5,
     "how_did_you_hear_about_us": "Google",
+    "api_description": "A project that does X",
+    "screenshot_url": "https://hackclub.com/project-x/screenshot.png",
     "secret_code": "It's secret for a reason..."
   }${reset},${reset}
   ${red}"deadline"${reset}: ${green}"January 31, 2025"${reset},${reset}
@@ -43,8 +44,7 @@ export const GET: APIRoute = () => {
 };
 
 const submitSchema = z.object({
-    first_name: z.string().min(2).max(50),
-    last_name: z.string().min(2).max(50),
+    full_name: z.string().min(2),
     email: z.string().email(),
     date_of_birth: z.string(),
     address: z.string().min(1).max(500),
@@ -54,6 +54,8 @@ const submitSchema = z.object({
     secret_code: z.string().optional(),
     api_link: z.string().url(),
     stars: z.number().int().min(1).max(5),
+    api_description: z.string().min(1).max(500),
+    screenshot_url: z.string().url(),
     how_did_you_hear_about_us: z.string().min(1).max(500)
 });
 
@@ -94,12 +96,8 @@ export const POST: APIRoute = async ({ request }) => {
                 {
                     "questions": [
                         {
-                            "id": "2cqK",
-                            "value": data.last_name
-                        },
-                        {
                             "id": "t33d",
-                            "value": data.first_name
+                            "value": data.full_name
                         },
                         {
                             "id": "fhLq",
@@ -134,6 +132,14 @@ export const POST: APIRoute = async ({ request }) => {
                         {
                             "id": "dBHs",
                             "value": data.stars
+                        },
+                        {
+                            "id": "dciQ",
+                            "value": data.api_description
+                        },
+                        {
+                            "id": "uez8",
+                            "value": data.screenshot_url
                         },
                         {
                             "id": "jVjr",
