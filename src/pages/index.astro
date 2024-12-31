@@ -7,119 +7,158 @@ import logo from "../logo.png";
 import { Image } from "astro:assets";
 import Title from "@/components/Title.astro";
 
-const exampleUrl = ["https://fremont-app.vercel.app/api/", "https://counterspellsv.xyz/docs.html", "https://cachet.dunkirk.sh/swagger"];
+const exampleUrl = [
+  "https://skyblock-inventory-api.vercel.app/",
+  "https://counterspellsv.xyz/docs.html",
+  "https://cachet.dunkirk.sh/swagger",
+];
 const submissionUrl = "https://forms.fillout.com/t/nzGCgZ4XUYus";
 ---
 
 <script is:inline>
-	// Set initial view mode based on localStorage
-	const savedViewMode = localStorage.getItem("viewMode");
-	if (savedViewMode === "readable") {
-		document.documentElement.classList.remove("dark");
-	} else {
-		document.documentElement.classList.add("dark");
-	}
+  // Set initial view mode based on localStorage
+  const savedViewMode = localStorage.getItem("viewMode");
+  if (savedViewMode === "readable") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
 </script>
 
 <MainLayout title="RaspAPI - Home">
-	<div class="flex flex-col items-center">
-		<label class="relative inline-flex items-center cursor-pointer">
-			<span class="mr-3 text-sm font-medium">Web</span>
-			<div class="relative">
-				<input type="checkbox" class="sr-only peer" />
-				<div
-					class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:bg-gray-600 peer-checked:bg-green-600 peer-checked:after:translate-x-5 peer-checked:after:bg-white"
-				>
-				</div>
-			</div>
-			<span class="ml-3 text-sm font-medium">API</span>
-		</label>
-	</div>
+  <div class="flex flex-col items-center">
+    <label class="relative inline-flex items-center cursor-pointer">
+      <span class="mr-3 text-sm font-medium">Web</span>
+      <div class="relative">
+        <input type="checkbox" class="sr-only peer" />
+        <div
+          class="w-11 h-6 bg-gray-700 rounded-full peer peer-focus:ring-4 peer-focus:ring-green-300 dark:peer-focus:ring-green-800 after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all dark:bg-gray-600 peer-checked:bg-green-600 peer-checked:after:translate-x-5 peer-checked:after:bg-white"
+        >
+        </div>
+      </div>
+      <span class="ml-3 text-sm font-medium">API</span>
+    </label>
+  </div>
 
-	<div class="max-w-4xl mx-auto" slot="programmer">
-		<Section />
-	</div>
+  <div class="max-w-4xl mx-auto" slot="programmer">
+    <Section />
+  </div>
 
-	<div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
-		<h1 class="text-4xl font-bold mb-4 text-center flex items-center justify-center">
-			<Image src={logo} alt="Logo" class="w-24" />
-			<Title />
-		</h1>
+  <div class="max-w-4xl mx-auto flex flex-col items-stretch" slot="readable">
+    <h1
+      class="text-4xl font-bold mb-4 text-center flex items-center justify-center"
+    >
+      <Image src={logo} alt="Logo" class="w-24" />
+      <Title />
+    </h1>
 
-		<p class="mb-4 text-center text-xl text-red-500">
-			Create an amazing API, get a mini server to host it on!
-		</p>
+    <p class="mb-4 text-center text-xl text-red-500">
+      Create an amazing API, get a mini server to host it on!
+    </p>
 
-		<a
-			href={submissionUrl}
-			class="mb-8 bg-black border border-green-400 text-slate-300 px-8 py-3 rounded shadow-lg text-lg font-semibold transition transform hover:scale-105 duration-200 mx-auto"
-			style="box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4);"
-			onmouseover="this.style.boxShadow='0 0 25px 5px rgba(34, 197, 94, 0.8), 0 0 50px 8px rgba(34, 197, 94, 0.6)';"
-			onmouseout="this.style.boxShadow='0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4)';"
-			>Get your Raspberry Pi</a
-		>
+    <a
+      href={submissionUrl}
+      class="mb-8 bg-black border border-green-400 text-slate-300 px-8 py-3 rounded shadow-lg text-lg font-semibold transition transform hover:scale-105 duration-200 mx-auto"
+      style="box-shadow: 0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4);"
+      onmouseover="this.style.boxShadow='0 0 25px 5px rgba(34, 197, 94, 0.8), 0 0 50px 8px rgba(34, 197, 94, 0.6)';"
+      onmouseout="this.style.boxShadow='0 0 15px 2px rgba(34, 197, 94, 0.6), 0 0 30px 4px rgba(34, 197, 94, 0.4)';"
+      >Get your Raspberry Pi</a
+    >
 
-		<ReadableSection title="About the YSWS">
-					Create an original API using any programming language or framework that you prefer and get a Raspberry Pi Zero 2 W to host it on! The API can be anything you want. The possibilities are endless!
-		</ReadableSection>
+    <ReadableSection title="About the YSWS">
+      Create an original API using any programming language or framework that
+      you prefer and get a Raspberry Pi Zero 2 W to host it on! The API can be
+      anything you want. The possibilities are endless!
+    </ReadableSection>
 
-		<ReadableSection title="Requirements">
-			<ul>
-				<li>Minimum of 3 GET requests and 1 POST request</li>
-				<li>
-					Submit your project to High Seas with minimum 3 hours for
-					extra rewards (and for proof)
-				</li>
-				<li>Include proper detailed documentation for your API</li>
-				<li>Host your API on a publicly accessible server</li>
-				<li>Submit your API before the deadline January 31st</li>
-			</ul>
+    <ReadableSection title="Requirements">
+      <ul>
+        <li>Minimum of 3 GET requests and 1 POST request</li>
+        <li>
+          Submit your project to High Seas with minimum 3 hours for extra
+          rewards (and for proof)
+        </li>
+        <li>Include proper detailed documentation for your API</li>
+        <li>Host your API on a publicly accessible server</li>
+        <li>Submit your API before the deadline January 31st</li>
+      </ul>
 
-			<p>Examples:</p>
+      <p>Examples:</p>
 
-			<ul>
-				<li>
-					<a href={exampleUrl[0]} class="hover:underline text-green-600" target="_blank">School Club Communication System </a>
-					that allows students to create a club and send posts (which result in notifications using Expo Push Tokens) to its members (used in my Cider app <a href="https://github.com/thedev132/fremont-app" class="hover:underline text-green-600" target="_blank">here</a>)!
-					<br><b>Username:</b> test@hackclub.com <b>Pass:</b> zachlatta
-				</li>
-				<li>
-					<a href={exampleUrl[1]} class="hover:underline text-green-600" target="_blank"> Hackathon Point System</a> which was used with the <a class="hover:underline text-green-600" target="_blank" href="https://github.com/thedev132/Counterspell-App">Counterspell App</a> to award users points in which they can get prizes with, mark attendance of workshops, and create scavanger hunts using the power of NFC!
-					
-				</li>
-				<li>
-					<a href = {exampleUrl[2]} class="hover:underline text-green-600" target="_blank">Cachet</a> is a cache / proxy for profile pictures and emojis on the hackclub slack and was made because calling the slack api every time you want a profile image or emoji is expensive and annoying. 
-				</li>
-			</ul>
-		</ReadableSection>
+      <ul>
+        <li>
+          <a
+            href={exampleUrl[0]}
+            class="hover:underline text-green-600"
+            target="_blank"
+          >
+            Hypixel Skyblock Inventory API
+          </a>, a simple API that allows you to get a player's parsed inventory,
+          including stats, enchantments, and more!
+        </li>
+        <li>
+          <a
+            href={exampleUrl[1]}
+            class="hover:underline text-green-600"
+            target="_blank"
+          >
+            Hackathon Point System</a
+          > which was used with the <a
+            class="hover:underline text-green-600"
+            target="_blank"
+            href="https://github.com/thedev132/Counterspell-App"
+            >Counterspell App</a
+          > to award users points in which they can get prizes with, mark attendance
+          of workshops, and create scavanger hunts using the power of NFC!
+        </li>
+        <li>
+          <a
+            href={exampleUrl[2]}
+            class="hover:underline text-green-600"
+            target="_blank">Cachet</a
+          > is a cache / proxy for profile pictures and emojis on the Hack Club Slack
+          and was made because calling the Slack API every time you want a profile
+          image or emoji is expensive and annoying.
+        </li>
+      </ul>
+    </ReadableSection>
 
-		<ReadableSection title="Prize Pool">
-			<div class="flex gap-8 items-center">
-				<div>
-					<p class="text-xl text-red-500 mt-0">Top 3 submissions will receive a Raspberry Pi Sense HAT!</p>
-					
-					<p class="mb-0">The Sense HAT is a great addition to your Raspberry Pi, allowing you to measure temperature, humidity, and more!</p>
-				</div>
-				<Image src={sensorhat} alt="Raspberry Pi Sensor HAT" class="w-1/3 mx-auto my-0" />
-			</div>
-		</ReadableSection>
-	</div>
+    <ReadableSection title="Prize Pool">
+      <div class="flex gap-8 items-center">
+        <div>
+          <p class="text-xl text-red-500 mt-0">
+            Top 3 submissions will receive a Raspberry Pi Sense HAT!
+          </p>
 
-	<script>
-		const checkbox = document.querySelector(
-			"input[type=checkbox]",
-		)! as HTMLInputElement;
+          <p class="mb-0">
+            The Sense HAT is a great addition to your Raspberry Pi, allowing you
+            to measure temperature, humidity, and more!
+          </p>
+        </div>
+        <Image
+          src={sensorhat}
+          alt="Raspberry Pi Sensor HAT"
+          class="w-1/3 mx-auto my-0"
+        />
+      </div>
+    </ReadableSection>
+  </div>
 
-		checkbox.checked = document.documentElement.classList.contains("dark");
+  <script>
+    const checkbox = document.querySelector(
+      "input[type=checkbox]"
+    )! as HTMLInputElement;
 
-		checkbox.addEventListener("change", (e) => {
-			if ((e.target as HTMLInputElement).checked) {
-				document.documentElement.classList.add("dark");
-				localStorage.setItem("viewMode", "programmer");
-			} else {
-				document.documentElement.classList.remove("dark");
-				localStorage.setItem("viewMode", "readable");
-			}
-		});
-	</script>
+    checkbox.checked = document.documentElement.classList.contains("dark");
+
+    checkbox.addEventListener("change", (e) => {
+      if ((e.target as HTMLInputElement).checked) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("viewMode", "programmer");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("viewMode", "readable");
+      }
+    });
+  </script>
 </MainLayout>
