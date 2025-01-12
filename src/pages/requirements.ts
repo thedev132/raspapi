@@ -15,7 +15,6 @@ const res = `${green}{${reset}
   ${green}}${reset},${reset}
   ${blue}"languages_and_frameworks"${reset}: ${yellow}"All"${reset},${reset}
   ${blue}"documentation"${reset}: ${yellow}"Required"${reset},${reset}
-  ${blue}"example"${reset}: ${yellow}["https://raspapi-example.adamthegreat.hackclub.app/", "https://cdn.hackclub.com/"]${reset},${reset}
   ${blue}"hint"${reset}: ${yellow}"Check out /prizes to learn more about our prize pool—and uncover another clue!"${reset}
 ${green}}\n`;
 
