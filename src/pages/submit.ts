@@ -130,10 +130,6 @@ export const POST: APIRoute = async ({ request }) => {
                             "value": data.github_repo
                         },
                         {
-                            "id": "dBHs",
-                            "value": data.stars
-                        },
-                        {
                             "id": "dciQ",
                             "value": data.api_description
                         },
