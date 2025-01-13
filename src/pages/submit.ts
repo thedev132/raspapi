@@ -13,7 +13,7 @@ const reset = "\x1b[0m";
 
 // Define the JSON content with color codes embedded
 const res = `${cyan}{${reset}
-  ${red}"submission_link"${reset}: ${cyan}"https://forms.fillout.com/t/nzGCgZ4XUYus"${reset},${reset}
+  ${red}"submission_link"${reset}: ${cyan}"https://forms.hackclub.com/submitraspapi"${reset},${reset}
   ${red}"submit_via_api"${reset}: ${cyan}
   ${green}Example (submit to /submit):${reset}
   ${cyan}{
@@ -85,7 +85,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     const { data } = result;
 
-    const res = await fetch("https://api.fillout.com/v1/api/forms/nzGCgZ4XUYus/submissions", {
+    const res = await fetch("https://api.fillout.com/v1/api/forms/toAGHEbg4kus/submissions", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
