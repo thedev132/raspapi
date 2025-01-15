@@ -31,7 +31,7 @@ const res = `${cyan}{${reset}
     "screenshot_url": "https://hackclub.com/project-x/screenshot.png",
     "secret_code": "It's secret for a reason..."
   }${reset},${reset}
-  ${red}"deadline"${reset}: ${green}"January 31, 2025"${reset},${reset}
+  ${red}"deadline"${reset}: ${green}"March 31, 2025"${reset},${reset}
   ${red}"hint"${reset}: ${green}"navigate to ${red}/[TOTAL_NUMBER_OF_ENDPOINTS_REQUIRED]${reset}${green} to finally uncover the secret!"${reset}
 ${cyan}}\n`;
 
